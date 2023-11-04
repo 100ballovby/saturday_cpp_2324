@@ -1,36 +1,27 @@
 #include <iostream>
 #include <string>
-#include <cmath>
+#include <random>
 using namespace std;  // подключаю ВСЕ функции из пространства std в свой проект
 
-
-string to_binary(int n) {
-    int rem;
-    string binary;
-    // делить число, пока оно не станет нулем
-    while (n > 0) {
-        rem = n % 2;
-        binary = to_string(rem) + binary;  // трансформирует число в строку
-        n /= 2;
-    }
-    return binary;
+int randint(int min, int max) {
+    random_device rd;  // сам генератор
+    mt19937 gen(rd());  // занимается генерацией числа
+    uniform_int_distribution<int> distribution(min, max);
+    return distribution(gen);
 }
 
-int to_decimal(string bin) {
-    int decimal_number {0};
-
-    for (int i = bin.size() - 1; i >= 0; i--) {
-        decimal_number += (bin[i] - '0') * pow(2, bin.size() - 1 - i);
-        // если от цифры char отнять '0', вы получите необходимое число
-    }
-    return decimal_number;
+string generate_random_color() {
+    string color = "#";
+    string hex_alphabet = "0123456789ABCDEF";
+    // TODO: Допишите функцию генерации случайного HEX-цвета.
+    //  Напоминаю: HEX-цвета состоят из 6 символов (не включая #) 16-ричной системы,
+    //  вначале цвета ставится #. Итоговая программа должна запрашивать у
+    //  пользователя количество цветов и выводить их в консоль.
 }
 
 int main() {
-    string binary = to_binary(217);
-    cout << binary << endl;
-    int dec = to_decimal("11011001");
-    cout << dec << endl;
+
+    cout << randint(1, 100);
     return 0;
 }
 
