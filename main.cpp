@@ -23,14 +23,23 @@ int search_array(int array[], int size, int element) {
 
 
 int main() {
-    int size = 100;
+    int size = 10;
     int A[size];
     for (int i = 0; i < size; i++) {
-        A[i] = r_int(1, 10);
+        A[i] = r_int(1, 50);
     }
 
     int found = search_array(A, size, 5);
     cout << found << endl;
+
+    for (int i = 0; i < size; i++) {
+        cout << A[i] << ' ';
+    }
+    cout << endl;
+    for (int i = size - 1; i >= 0; i--) {  // разворот вывода массива
+        cout << A[i] << ' ';
+    }
+    cout << endl;
     return 0;
 }
 
