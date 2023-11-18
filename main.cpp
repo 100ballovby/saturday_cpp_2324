@@ -4,42 +4,23 @@
 using namespace std;  // подключаю ВСЕ функции из пространства std в свой проект
 
 
-int r_int(int min, int max) {
-    random_device rd;  // сам генератор
-    mt19937 gen(rd());  // занимается генерацией числа
-    uniform_int_distribution<int> distribution(min, max);
-    return distribution(gen);
-}
-
-
-int search_array(int array[], int size, int element) {
-    for (int i = 0; i < size; i++) {
-        if (array[i] == element) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-
 int main() {
-    int size = 10;
-    int A[size];
-    for (int i = 0; i < size; i++) {
-        A[i] = r_int(1, 50);
-    }
+    int length;
+    cout << "Insert length of array: ";
+    cin >> length;
 
-    int found = search_array(A, size, 5);
-    cout << found << endl;
+    int *array = new int[length];  // динамический массив
+    array[0] = 9; // присваиваю элементу под индексом 0 значение 9
+    cout << array[0] << endl;
+    array = nullptr;
+    // cout << array[0] << endl;  <- после удаления динамически выделенного массива, обратиться к нему нельзя
 
-    for (int i = 0; i < size; i++) {
-        cout << A[i] << ' ';
+    int len {4};
+    int *array2 = new int[len] {9, 3, 4, 2};
+    for (int i = 0; i < len; i++) {
+        cout << *(array2 + i) << endl;
     }
-    cout << endl;
-    for (int i = size - 1; i >= 0; i--) {  // разворот вывода массива
-        cout << A[i] << ' ';
-    }
-    cout << endl;
+    // увеличивать (или уменьшать) размер динамического массива все еще нельзя
     return 0;
 }
 
