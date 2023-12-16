@@ -10,44 +10,35 @@ int r_int_matrix(int min, int max) {
     return distribution(gen);
 }
 
-void fill_matrix(int **matrix, int n, int m) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            matrix[i][j] = r_int_matrix(1, 50);
+int task6(int **matrix, int top_l_r, int top_l_col, int bot_r_r, int bot_r_col) {
+    int sum = 0;
+    for (int i = top_l_r; i < bot_r_r; i++) {
+        for (int j = top_l_col; j < bot_r_col; j++) {
+            sum += matrix[i][j];
         }
     }
+    return sum;
 }
 
-void print_matrix(int **matrix, int n, int m) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cout << matrix[i][j] << "\t";
+int task7(int **matrix, int n, int col) {
+    int max_element = matrix[0][col];  // задаем как максимальный первый элемент
+    for (int i = 1; i < n; i++) {
+        if (matrix[i][col] > max_element) {
+            max_element = matrix[i][col];
         }
-        cout << endl;
     }
+    return max_element;
 }
 
-void dealloc_matrix(int ** matrix, int n) {
-    for (int i = 0; i < n; i++) {
-        matrix[i] = nullptr;
-    }
-    matrix = nullptr;
-    cout << "Memory deallocated!" << endl;
-}
-
-int *min_in_each_column(int **matrix, int n, int m) {
-    int *min_in_cols = new int [m];
+// Найти сумму элементов двумерного массива по столбцам.
+void task8(int **matrix, int n, int m, int *sums) {
     for (int j = 0; j < m; j++) {
-        min_in_cols[j] = matrix[0][j];  // записываем в матрицу первые элементы каждого столбца
+        sums[j] = 0;
         for (int i = 0; i < n; i++) {
-            if (matrix[i][j] < min_in_cols[j]) {  // если элемент матрицы меньше, чем текущий минимум для столбца
-                min_in_cols[j] = matrix[i][j];  // переставляем значение элемента
-            }
+            sums[j] += matrix[i][j];
         }
     }
-    return min_in_cols;
 }
-
 
 int main() {
     int n, m;
@@ -55,37 +46,27 @@ int main() {
     cin >> n >> m;
 
     int **A = new int *[n];  // определение двумерного динамического массива
+    int *array = new int [m];
     for (int i = 0; i < n; i++) {
         A[i] = new int[m];
     }
 
-    int choice;
-    do {
-        cout << "Make your choice:" << endl;
-        cout << "1 - Fill Matrix\n2 - Show matrix\n3 - sort matrix lines\n4 - clean memory\n5 - quit";
-        cin >> choice;
-        int *lowest;
-        switch (choice) {
-            case 1:
-                fill_matrix(A, n, m);
-                lowest = min_in_each_column(A, n, m);
-                break;
-            case 2:
-                print_matrix(A, n, m);
-                cout << "\nLowest items in matrix: " << endl;
-                for (int i = 0; i < m; i++) {
-                    cout << lowest[i] << " ";
-                }
-                cout << endl << endl;
-                break;
-            case 3:
-                cout << "Sorted!" << endl;
-                break;
-            case 4:
-                dealloc_matrix(A, n);
-                break;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            A[i][j] = r_int_matrix(1, 50);
+            cout << A[i][j] << " ";
         }
-    } while (choice != 5);
+        cout << endl;
+    }
+
+    //int res = task6(A, 0, 3, 1, 3);
+    //cout << "Sum: " << res << endl;
+
+    task8(A, n, m, array);
+    cout << "Sums of cols: ";
+    for (int i = 0; i < m; i++) {
+        cout << array[i] << " ";
+    }
     return 0;
 }
 
