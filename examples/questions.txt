@@ -1,35 +1,35 @@
-1. Дать определение сети.
-2. Чем отличается коммуникационная сеть от информационной сети?
-3. Как разделяются сети по территориальному признаку?
-4. Что такое информационная система?
-5. Что такое каналы связи?
-6. Дать определение физического канала связи.
-7. Дать определение логического канала связи.
-8. Как называется совокупность правил обмена информацией между двумя или несколькими устройствами?
-9. Как называется объект, способный осуществлять хранение, обработку или передачу данных, в состав, которого входят компьютер, программное обеспечение, пользователи и др. составляющие, предназначенные для процесса обработки и передачи данных?
-10. Каким параметром характеризуется загрузка сети?
-11. Что такое метод доступа?
-12. Что такое совокупность правил, устанавливающих процедуры и формат обмена информацией?
-13. Чем отличается рабочая станция в сети от обычного персонального компьютера?
-14. Какие элементы входят в состав сети?
-15. Как называется описание физических соединений в сети?
-16. Что такое архитектура сети?
-17. Как назвать способ определения, какая из рабочих станций сможет следующей использовать канал связи?
-18. Перечислить преимущества использования сетей.
-19. Чем отличается одноранговая архитектура от клиент серверной архитектуры?
-20. Каковы преимущества крупномасштабной сети с выделенным сервером?
-21. Какие сервисы предоставляет клиент серверная архитектура?
-22. Преимущества и недостатки архитектуры терминал – главный компьютер.
-23. В каком случае используется одноранговая архитектура?
-24. Что характерно для сетей с выделенным сервером?
-25. Как называются рабочие станции, которые используют ресурсы сервера?
-26. Что такое сервер?
-27. Что такое OSI?
-28. Каково назначение базовой модели взаимодействия открытых систем?
-29. На какие уровни разбита базовая модель OSI?
-30. Какие функции несет уровень в модели взаимодействия открытых систем?
-31. На какие единицы разбивается информация для передачи данных по сети?
-32. Что обеспечивает горизонтальная составляющая модели взаимодействия открытых систем?
-33. Какие элементы являются основными элементами для базовой модели взаимодействия открытых систем?
-34. Какие функции выполняются на физическом уровне?
-35. Какие вопросы решаются на физическом уровне?
+1. Define a network.
+2. How does a communication network differ from an information network?
+3. How are networks divided by territory?
+4. What is an information system?
+5. What are communication channels?
+6. Define a physical communication channel.
+7. Define a logical communication channel.
+8. What is a set of rules for exchanging information between two or more devices called?
+9. What is the name of an object capable of storing, processing or transmitting data, which includes a computer, software, users and other components intended for the process of processing and transmitting data?
+10. What parameter characterizes network load?
+11. What is an access method?
+12. What is a set of rules establishing procedures and format for information exchange?
+13. How does a workstation on a network differ from a regular personal computer?
+14. What elements make up the network?
+15. What is the description of physical connections on a network called?
+16. What is network architecture?
+17. What is the name of the method for determining which workstation will be able to use the communication channel next?
+18. List the advantages of using networks.
+19. How does peer-to-peer architecture differ from client-server architecture?
+20. What are the advantages of a large-scale network with a dedicated server?
+21. What services does the client-server architecture provide?
+22. Advantages and disadvantages of the terminal-host computer architecture.
+23. When is peer-to-peer architecture used?
+24. What is typical for networks with a dedicated server?
+25. What are the names of workstations that use server resources?
+26. What is a server?
+27. What is OSI?
+28. What is the purpose of the basic model of open systems interaction?
+29. What layers is the basic OSI model divided into?
+30. What functions does a level have in the open systems interaction model?
+31. What units is information divided into for transmitting data over the network?
+32. What does the horizontal component of the open systems interaction model provide?
+33. What are the basic elements for a basic open systems interoperability model?
+34. What functions are performed at the physical level?
+35. What issues are resolved at the physical level?
