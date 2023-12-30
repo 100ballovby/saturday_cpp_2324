@@ -1,45 +1,52 @@
 #include <iostream>
 #include <fstream>
+#include <random>
 using namespace std;  // подключаю ВСЕ функции из пространства std в свой проект
 
 
-void write_file(string path, string file_name, string text) {
-    // создание/открытие файла start.txt
-    // ofstream file;
-    // file.open("start.txt", ios_base::out) <- этот вариант тоже доступен
-    ofstream my_file(path + file_name, ios_base::out);
-
-    if (my_file.is_open()) {  // проверяем, открыт ли файл
-        my_file << text;  // вписать в файл информацию
-        my_file.close();  // закрыть файл
-    } else {  // если файл не удалось открыть
-        cout << "Error!" << endl;
-    }
+int r_int(int min, int max) {
+    random_device rd;  // сам генератор
+    mt19937 gen(rd());  // занимается генерацией числа
+    uniform_int_distribution<int> distribution(min, max);
+    return distribution(gen);
 }
 
 
-void read_file(string path, string file_name) {
-    string lines;
-    ifstream my_file(path + file_name);
-
-    /* while (!my_file.eof()) {
-        string line;
-        my_file >> line;
-        lines += line;
-    } */
-    while (!my_file.eof()) {
-        string line;
-        getline(my_file, line);
-        lines += line;
+string *read_file(string &file_name) {
+    ifstream file(file_name, ios_base::in);
+    if (!file.is_open()) {
+        cout << "Error!" << endl;
     }
 
-    cout << lines << endl;
+    string line;
+    int size = 0;
+    while (getline(file, line)) {
+        size++;
+    }
+    file.close();
+    ifstream file1(file_name, ios_base::in);
+
+    string *content = new string[size];
+    int i = 0;
+    while (getline(file1, line)) {
+        content[i] = line;
+        i++;
+    }
+    file.close();
+    return content;
 }
 
 
 int main() {
-    string path { "/Users/greatraksin/CLionProjects/saturday_cpp_2324/examples/" };
-    read_file(path, "pi_digits.txt");
+    string path = "/Users/greatraksin/CLionProjects/saturday_cpp_2324/examples/questions.txt";
+    string *lines = read_file(path);
+    for (int i = 0; i < 35; i++) {
+        cout << lines[i] << endl;
+    }
+    string base_path = "/Users/greatraksin/CLionProjects/saturday_cpp_2324/exam"; // у вас -> ...\\exam
+    for (int i = 0; i < 35; i++) {
+
+    }
     return 0;
 }
 
