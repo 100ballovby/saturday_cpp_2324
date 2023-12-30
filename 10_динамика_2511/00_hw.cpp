@@ -3,7 +3,7 @@
 #include <random>
 using namespace std;  // подключаю ВСЕ функции из пространства std в свой проект
 
-int r_int(int min, int max) {
+int riint(int min, int max) {
     random_device rd;  // сам генератор
     mt19937 gen(rd());  // занимается генерацией числа
     uniform_int_distribution<int> distribution(min, max);
@@ -19,7 +19,7 @@ int dynamic_hw_01() {
 
     int *A = new int[n];
     for (int i = 0; i < n; i++) {
-        A[i] = r_int(1, 100);
+        A[i] = riint(1, 100);
         cout << A[i] << " ";
     }
 

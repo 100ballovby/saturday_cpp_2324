@@ -4,49 +4,31 @@
 using namespace std;  // подключаю ВСЕ функции из пространства std в свой проект
 
 
-int r_int(int min, int max) {
-    random_device rd;  // сам генератор
-    mt19937 gen(rd());  // занимается генерацией числа
-    uniform_int_distribution<int> distribution(min, max);
-    return distribution(gen);
-}
+double calculateSumFromFile(string file_name) {
+    ifstream b_file(file_name, ios::binary);
 
-
-string *read_file(string &file_name) {
-    ifstream file(file_name, ios_base::in);
-    if (!file.is_open()) {
-        cout << "Error!" << endl;
+    if (!b_file.is_open()) {
+        cout << "Error!";
+        return 0.0;
     }
+    double sum = 0.0;
+    double cur_n;
 
-    string line;
-    int size = 0;
-    while (getline(file, line)) {
-        size++;
+    while (b_file >> cur_n) {
+        cout << cur_n << endl;
+        sum += cur_n;
     }
-    file.close();
-    ifstream file1(file_name, ios_base::in);
-
-    string *content = new string[size];
-    int i = 0;
-    while (getline(file1, line)) {
-        content[i] = line;
-        i++;
-    }
-    file.close();
-    return content;
+    b_file.close();
+    return sum;
 }
 
 
 int main() {
-    string path = "/Users/greatraksin/CLionProjects/saturday_cpp_2324/examples/questions.txt";
-    string *lines = read_file(path);
-    for (int i = 0; i < 35; i++) {
-        cout << lines[i] << endl;
-    }
-    string base_path = "/Users/greatraksin/CLionProjects/saturday_cpp_2324/exam"; // у вас -> ...\\exam
-    for (int i = 0; i < 35; i++) {
+    string base_path = "/Users/greatraksin/CLionProjects/saturday_cpp_2324";
+    double result = calculateSumFromFile(base_path + "/numbers.dat");
 
-    }
+    cout << "Sum of numbers is: " << result << endl;
+
     return 0;
 }
 
