@@ -1,51 +1,116 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <cstdlib>
+#include <random>
 using namespace std;  // подключаю ВСЕ функции из пространства std в свой проект
 
-
-filesystem::path make_directory(string path, string dirname) {
-    // создаем папку
-    filesystem::path dir_path = path + "/" + dirname;  // устанавливаю путь к новой папке
-    filesystem::create_directory(dir_path);  // создаем папку с путем dir_path
-    return dir_path;
+int r_int(int min, int max) {
+    random_device rd;  // сам генератор
+    mt19937 gen(rd());  // занимается генерацией числа
+    uniform_int_distribution<int> distribution(min, max);
+    return distribution(gen);
 }
 
-// функция: которая ищет в указанном каталоге все файлы с определенным расширением
-void find_files(string path, string ext=".json") {
-    filesystem::path root_path = path;
-    for (auto &file : filesystem::directory_iterator(root_path)) {
-        if (file.path().extension() == ext) {
-            cout << file.path() << endl;
+void task1() {
+    ofstream file("../numbers.txt");
+    for (int i = 0; i < 10; i++) {
+        int n = r_int(1, 100);
+        file << n << " ";
+    }
+}
+
+void task2(string filename) {
+    ifstream file("../" + filename);
+    string line;
+    while (getline(file, line)) {
+        cout << line << endl;
+    }
+}
+
+void task3() {
+    // Найти в файле numbers.txt самое большое и самое маленькое число.
+    ifstream file("../numbers.txt");
+    int max = INT_MIN;
+    int min = INT_MAX;
+    int number;
+
+    while (file >> number) {
+        if (number > max) {
+            max = number;
+        } else if (number < min) {
+            min = number;
         }
     }
+    cout << "Max " << max << endl;
+    cout << "Min " << min << endl;
 }
 
-void delete_dir(string path) {
-    filesystem::path dir_path = path;  // путь к папке берем из параметра
-    filesystem::remove_all(dir_path); // удалить все, что находится в пути path
-}
+void task4() {
+    // Найти в файле numbers.txt самое большое и самое маленькое число.
+    ifstream file("../numbers.txt");
+    int number;
+    int count = 0;
 
-bool move_file(filesystem::path file_path, filesystem::path new_dir_path) {
-    // проверяем, существует ли файл
-    if (!filesystem::exists(file_path)) {
-        return false;
+    while (file >> number) {
+        if (number % 3 == 0) {
+            count++;
+        }
     }
-    filesystem::path new_file_path = new_dir_path / file_path.filename();
-    // перемещаем файл
-    filesystem::rename(file_path, new_file_path);
-    return true;
+    cout << count << " number in file" << endl;
+}
+
+void task5() {
+    string dictionary[15] {
+        "deficit", "tight", "space", "century",
+        "strange", "neighborhood", "island", "easy",
+        "communist", "design", "order", "calendar",
+        "culture", "scatter", "motivation",
+    };
+    ofstream file("../words.txt");
+    for (int i = 0; i < 10; i++) {
+        int r_index = r_int(0, 14);
+        file << dictionary[r_index] << "\n";
+    }
+}
+
+void task7() {
+    ifstream f("../words.txt");
+    string arr[20];
+    int i = 0;
+    for (string line; getline(f, line);) {
+        arr[i] = line;
+        i++;
+    }
+
+    int word_counts[20] = {0};
+    for (string word : arr) {
+        for (int j = 0; j < 20; j++) {
+            if (word == arr[j]) {
+                word_counts[j]++;
+                break;
+            }
+        }
+    }
+
+    // найдем элемент с наибольшим значением в массиве
+    int max_index = 0;
+    for (int i = 1; i < 10; i++) {
+        if (word_counts[i] > word_counts[max_index]) {
+            max_index = i;
+        }
+    }
+
+    cout << "Word: " << arr[max_index] << endl;
 }
 
 int main() {
-    filesystem::path d_p = make_directory("/Users/greatraksin/CLionProjects/saturday_cpp_2324", "new_folder");
-    find_files(d_p);
-    delete_dir(d_p);
-    filesystem::path d_p2 = make_directory("/Users/greatraksin/CLionProjects/saturday_cpp_2324",
-                   "test_folder");
-    move_file("/Users/greatraksin/CLionProjects/saturday_cpp_2324/test.json",
-              d_p2);
+    //task1();
+    //task2("numbers.txt");
+    //task3();
+    //task4();
+    //task5();
+    //task2("words.txt");
+    task7();
     return 0;
 }
 
